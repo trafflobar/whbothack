@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocket Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #060b1a, #000000);
+      color: white;
+      text-align: center;
+    }
+    .button {
+      background: linear-gradient(45deg, #d4145a, #fbb03b);
+      border: none;
+      border-radius: 20px;
+      color: white;
+      padding: 15px 20px;
+      margin: 10px auto;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 100, 0.6);
+      text-decoration: none;
+      display: inline-block;
+      max-width: 90%;
+      width: 300px;
+    }
+    .button-green {
+      background: linear-gradient(45deg, #0f0, #0c0);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      animation: pulse 1.5s infinite;
+      color: black;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #0f0; }
+      50% { box-shadow: 0 0 30px #0f0; }
+      100% { box-shadow: 0 0 10px #0f0; }
+    }
+    .section { padding: 30px 20px; }
+    #signal-display {
+      font-size: 1.5em;
+      color: #00ffcc;
+      margin-top: 20px;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      background: #111c2b;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .modal-content p {
+      margin: 10px 0;
+      font-size: 1.1em;
+      line-height: 1.4;
+    }
+    .modal-button {
+      display: block;
+      background: linear-gradient(45deg, #d4145a, #fbb03b);
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.2em;
+      text-decoration: none;
+      margin: 15px auto 0;
+      box-shadow: 0 0 20px rgba(255, 0, 100, 0.6);
+      max-width: 90%;
+      width: 300px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: -10px;
+    }
+    .close:hover { color: #fff; }
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      .section { padding: 20px 10px; }
+      .button, .modal-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1em;
+      }
+      .modal-content { margin: 20% auto; padding: 15px; }
+    }
+    table { /* комментарии и таблица без изменений */ }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <h1>ඔබගේ වාරය තවම නැවතීලා නෑ. අදහස් වීමට තවත් තත්පර කිහිපයකි!</h1>
+    <a class="button" href="https://affpa.top/L?tag=d_3713491m_29091c_&site=3713491&ad=29091&r=registration" target="_blank">🎮 ඇවියේටර් ක්‍රීඩාව</a>
+    <button class="button button-green" onclick="getSignal()">✅ සංඥා ලබාගන්න</button>
+    <div id="signal-display"></div>
+  </div>
+
+  <!-- Modal Window -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-message" style="font-size:1.3em; font-weight:bold; margin-bottom:10px;"></div>
+      <p>මෙම වැඩසටහන ක්‍රියා කිරීම සඳහා, කරුණාකර අවම තැන්පතු 1600 LKR සමඟ රෙජිස්ට්‍රේෂන් වන්න:</p>
+      <a class="modal-button" href="https://affpa.top/L?tag=d_3713491m_29091c_&site=3713491&ad=29091&r=registration" target="_blank">ලියාපදිංචි වී බොට් ලබා ගන්න</a>
+      <p>වෙනත් සබැඳි ක්‍රියා නොකරයි.<br>සෑම ප්‍රශ්නයක් සඳහාත් Telegram හි @virat999bot වෙත පණිවිඩයක් යවන්න.</p>
+    </div>
+  </div>
+
+  <!-- … сохранить разделы с таблицей и комментариями без изменений … -->
+
+  <script>
+    let signalGiven = false;
+    function getSignal() {
+      const display = document.getElementById('signal-display');
+      const modal = document.getElementById('modal');
+      const msg = document.getElementById('modal-message');
+      if (!signalGiven) {
+        const multiplier = (Math.random() * (3 - 1) + 1).toFixed(2);
+        display.textContent = `🚀 නව සංඥාව: ×${multiplier}`;
+        msg.textContent = `🚀 නව සංඥාව: ×${multiplier}`;
+        modal.style.display = 'block';
+        signalGiven = true;
+      } else {
+        alert('සම්පුර්ණ වැඩසටහන සඳහා, කරුණාකර රෙජිස්ට්‍රේෂන් කර, අවම තැන්පතු 1600 LKR කරන්න!');
+      }
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('modal');
+      if (event.target === modal) modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
